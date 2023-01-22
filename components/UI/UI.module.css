@@ -1,0 +1,33 @@
+.mobileNavBar__container {
+  width: 100%;
+  position: fixed;
+  bottom: 0px;
+}
+
+.topNavBar__container .toolbar {
+  justify-content: space-between;
+}
+
+.topNavBar__container {
+  width: 100%;
+  position: fixed;
+  top: 0px;
+}
+
+.mobileCategoryBar__container {
+  display: flex;
+  flex-direction: row;
+  white-space: nowrap;
+  padding-left: 5px;
+  overflow: scroll;
+}
+
+.categoryWrapper {
+  display: flex;
+  overflow: scroll;
+  white-space: nowrap;
+}
+
+.layoutContainer {
+  margin-top: 80px;
+}
