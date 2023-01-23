@@ -14,50 +14,6 @@ import { Box } from "@mui/system";
 
 const inter = Inter({ subsets: ["latin"] });
 
-// category card for mobile
-// const MobileCategoryCard = (props) => {
-//   return <Avatar
-// }
-
-// category list for mobile
-const MobileCategoryBar = (props) => {
-  let { categories } = props || {};
-
-  return (
-    <>
-      {categories.length &&
-        categories.map((category) => (
-          <>
-            <Avatar
-              alt={category.category_name}
-              src="http://placeimg.com/640/480/fashion"
-            />
-            {/* <h5>{category.category_id}</h5>
-            <h5>{category.category_name}</h5>
-            <h5>{category.image_url["String"]}</h5> */}
-          </>
-        ))}
-    </>
-  );
-};
-
-const ItemCard = (props) => {
-  return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardMedia
-        sx={{ height: 140 }}
-        image={props.imageUrl}
-        title="green iguana"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {props.title}
-        </Typography>
-      </CardContent>
-    </Card>
-  );
-};
-
 // main page
 function Home({ products, categories }) {
   return (
@@ -148,7 +104,7 @@ Home.getInitialProps = async (ctx) => {
     products = [];
   let baseUrl = process.env.NEXT_APP_BASE_URL;
   // fetch products
-  let request = await fetch(baseUrl + "/products/items?page=0&size=10");
+  let request = await fetch(baseUrl + "/product/v1/list?page=0&size=10");
 
   let response = await request.json();
   if (response.status) {
@@ -156,7 +112,7 @@ Home.getInitialProps = async (ctx) => {
   }
 
   // fetch categories
-  request = await fetch(baseUrl + "/products/categories");
+  request = await fetch(baseUrl + "/category/v1/list");
   response = await request.json();
 
   if (response.status) {
