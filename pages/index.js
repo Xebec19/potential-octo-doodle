@@ -11,6 +11,8 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import TextUI from "@/components/UI/TextUI";
 import { Box } from "@mui/system";
+import Link from "next/link";
+import ProductList from "@/components/ProductList";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -38,24 +40,26 @@ function Home({ products, categories }) {
           <div className={styles.categoryWrapper}>
             {categories &&
               categories.map((category, index) => (
-                <Card key={index} sx={{ maxWidth: 345, m: 1 }}>
-                  <CardMedia
-                    sx={{ height: 140 }}
-                    image={category.image_url["String"]}
-                    title={category.category_name}
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                      {category.category_name}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                      Possimus non dolore labore exercitationem sint eum culpa
-                      magni dolorem commodi soluta! Aspernatur minima, eos
-                      voluptas iste expedita illum corrupti ipsum sequi.
-                    </Typography>
-                  </CardContent>
-                </Card>
+                <a key={index} href={"/categories/" + category.category_id}>
+                  <Card sx={{ maxWidth: 345, m: 1 }}>
+                    <CardMedia
+                      sx={{ height: 140 }}
+                      image={category.image_url["String"]}
+                      title={category.category_name}
+                    />
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="div">
+                        {category.category_name}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        Lorem, ipsum dolor sit amet consectetur adipisicing
+                        elit. Possimus non dolore labore exercitationem sint eum
+                        culpa magni dolorem commodi soluta! Aspernatur minima,
+                        eos voluptas iste expedita illum corrupti ipsum sequi.
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </a>
               ))}
           </div>
 
@@ -69,29 +73,7 @@ function Home({ products, categories }) {
           >
             Products
           </TextUI>
-          <div className={styles.categoryWrapper}>
-            {products &&
-              products.map((product, index) => (
-                <Card key={index} sx={{ maxWidth: 345, m: 1 }}>
-                  <CardMedia
-                    sx={{ height: 140 }}
-                    image={product.product_image["String"]}
-                    title={product.product_name}
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                      {product.product_name}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                      Possimus non dolore labore exercitationem sint eum culpa
-                      magni dolorem commodi soluta! Aspernatur minima, eos
-                      voluptas iste expedita illum corrupti ipsum sequi.
-                    </Typography>
-                  </CardContent>
-                </Card>
-              ))}
-          </div>
+          <ProductList products={products} />
         </Layout>
       </main>
     </>
